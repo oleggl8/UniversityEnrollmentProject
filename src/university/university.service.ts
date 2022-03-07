@@ -5,14 +5,17 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class UniversityService {
-    constructor(@InjectModel('University') private readonly universityModel: Model<University>) {}
+  constructor(
+    @InjectModel('University')
+    private readonly universityModel: Model<University>,
+  ) {}
 
-    async find (id: string): Promise<University> {
-        return await this.universityModel.findOne({ _id: id});
-    }
+  async find(id: string): Promise<University> {
+    return await this.universityModel.findOne({ _id: id });
+  }
 
-    async create (university: University): Promise<University> {
-        const newUniversity = new this.universityModel(university);
-        return await newUniversity.save();
-    }
+  async create(university: University): Promise<University> {
+    const newUniversity = new this.universityModel(university);
+    return await newUniversity.save();
+  }
 }
