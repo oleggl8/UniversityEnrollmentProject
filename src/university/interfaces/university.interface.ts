@@ -1,6 +1,6 @@
 export interface University {
-    id?: String;
-    name: String;
-    maxNumberOfStudens: Number;
-    minGpa: Number;
+  id?: string;
+  name: string;
+  maxNumberOfStudens: number;
+  minGpa: number;
 }
