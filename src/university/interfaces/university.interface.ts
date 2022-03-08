@@ -3,4 +3,5 @@ export interface University {
   name: string;
   maxNumberOfStudents: number;
   minGpa: number;
+  //students: []; // Get Help
 }

@@ -18,4 +18,10 @@ export class StudentService {
     const newStudent = new this.studentModel(student);
     return await newStudent.save();
   }
+
+  async calcGpa(student: Student): Promise<number> {
+    let sum = 0;
+    student.grades.forEach((gradeJSON) => (sum += gradeJSON.grade));
+    return sum / student.grades.length;
+  }
 }

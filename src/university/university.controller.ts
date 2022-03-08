@@ -17,7 +17,7 @@ export class UniversityController {
 
   @Get('/:id') // "https://localhost:3000/university/1293871298634"
   async find(@Param('id') id: string): Promise<University> {
-    return await this.universityService.find(id);
+    return await this.universityService.findUniversity(id);
   }
 
   @Post()
