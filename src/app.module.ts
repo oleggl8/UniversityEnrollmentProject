@@ -9,8 +9,16 @@ import { EnrollController } from './enroll/enroll.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [UniversityModule, MongooseModule.forRoot('mongodb://localhost:27017/Universities')],
-  controllers: [AppController, UniversityController, StudentController, EnrollController],
+  imports: [
+    UniversityModule,
+    MongooseModule.forRoot('mongodb://localhost:27017/Universities'),
+  ],
+  controllers: [
+    AppController,
+    UniversityController,
+    StudentController,
+    EnrollController,
+  ],
   providers: [AppService, UniversityService],
 })
 export class AppModule {}
