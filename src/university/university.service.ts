@@ -14,7 +14,7 @@ export class UniversityService {
     return await this.universityModel.findOne({ _id: id });
   }
 
-  async create(university: University): Promise<University> {
+  async createUniversity(university: University): Promise<University> {
     const newUniversity = new this.universityModel(university);
     return await newUniversity.save();
   }

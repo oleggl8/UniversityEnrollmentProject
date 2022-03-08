@@ -1,6 +1,6 @@
 export interface University {
   id?: string;
   name: string;
-  maxNumberOfStudens: number;
+  maxNumberOfStudents: number;
   minGpa: number;
 }
