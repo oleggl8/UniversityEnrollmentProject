@@ -8,12 +8,12 @@ import { StudentController } from './student/student.controller';
 import { EnrollController } from './enroll/enroll.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentService } from './student/student.service';
-import { EnrollService } from './enroll/enroll.service';
 
 @Module({
   imports: [
     UniversityModule,
     MongooseModule.forRoot('mongodb://localhost:27017/Universities'),
+    MongooseModule.forRoot('mongodb://localhost:27017/Students'),
   ],
   controllers: [
     AppController,
@@ -21,6 +21,6 @@ import { EnrollService } from './enroll/enroll.service';
     StudentController,
     EnrollController,
   ],
-  providers: [AppService, UniversityService, StudentService, EnrollService],
+  providers: [AppService, UniversityService, StudentService],
 })
 export class AppModule {}

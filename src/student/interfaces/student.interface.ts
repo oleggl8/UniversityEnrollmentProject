@@ -4,4 +4,5 @@ export interface Student {
   id?: string;
   name: string;
   grades: Array<Grade>;
+  universityId?: string;
 }
