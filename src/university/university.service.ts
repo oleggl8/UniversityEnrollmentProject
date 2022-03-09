@@ -9,7 +9,6 @@ export class UniversityService {
   constructor(
     @InjectModel('University')
     private readonly universityModel: Model<University>,
-    private readonly studentService: StudentService,
   ) {}
 
   async findUniversity(id: string): Promise<University> {
@@ -19,13 +18,5 @@ export class UniversityService {
   async createUniversity(university: University): Promise<University> {
     const newUniversity = new this.universityModel(university);
     return await newUniversity.save();
-  }
-
-  async enroll(studentId: string, universityId: string): Promise<void> {
-    const universityToEnroll = await this.findUniversity(universityId);
-    const studentToBeEnrolled = await this.studentService.findStudent(
-      studentId,
-    );
-    // to be continued - Validation
   }
 }
