@@ -13,6 +13,7 @@ import { StudentService } from './student/student.service';
   imports: [
     UniversityModule,
     MongooseModule.forRoot('mongodb://localhost:27017/Universities'),
+    MongooseModule.forRoot('mongodb://localhost:27017/Students'),
   ],
   controllers: [
     AppController,

@@ -13,7 +13,7 @@ export class StudentService {
   ) {}
 
   async findStudent(studentId: string): Promise<Student> {
-    return await this.studentModel.findOne({ _id: studentId });
+    return await this.studentModel.findById(studentId);
   }
 
   async createStudent(student: Student): Promise<Student> {
@@ -25,6 +25,10 @@ export class StudentService {
     let sum = 0;
     student.grades.forEach((gradeJSON) => (sum += gradeJSON.grade));
     return sum / student.grades.length;
+  }
+
+  async getStudents(universityId: string): Promise<Array<Student>> {
+    return await Model.find({ universityId });
   }
 
   async enroll(studentId: string, universityId: string): Promise<void> {
@@ -40,7 +44,7 @@ export class StudentService {
     if (students.length >= universityToEnroll.maxNumberOfStudents) {
       return;
     }
-    studentToBeEnrolled.universityId = universityId;
+    this.studentModel.findByIdAndUpdate(studentId, { universityId });
     return;
   }
 }
