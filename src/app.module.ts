@@ -8,7 +8,6 @@ import { StudentController } from './student/student.controller';
 import { EnrollController } from './enroll/enroll.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentService } from './student/student.service';
-import { EnrollService } from './enroll/enroll.service';
 
 @Module({
   imports: [
@@ -21,6 +20,6 @@ import { EnrollService } from './enroll/enroll.service';
     StudentController,
     EnrollController,
   ],
-  providers: [AppService, UniversityService, StudentService, EnrollService],
+  providers: [AppService, UniversityService, StudentService],
 })
 export class AppModule {}
