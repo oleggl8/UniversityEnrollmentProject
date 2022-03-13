@@ -36,18 +36,12 @@ export class StudentService {
       universityId,
     );
     const studentToBeEnrolled = await this.findStudent(studentId);
-    console.log('student name is:' + studentToBeEnrolled.name);
     const studentGpa = await this.calcGpa(studentToBeEnrolled);
-    console.log('student gpa is:' + studentGpa);
     const students = await this.studentModel.find({ universityId });
-    console.log('students in ' + universityToEnroll.name + ' are:' + students);
-    console.log('before');
     if (studentGpa < universityToEnroll.minGpa) {
-      console.log('before2');
       throw new BadRequestException(
         "Student's GPA does not meet the required GPA for that university",
       );
-      console.log('after');
     }
     if (students.length >= universityToEnroll.maxNumberOfStudents) {
       throw new BadRequestException('University is full!');
