@@ -12,5 +12,6 @@ import { UniversitySchema } from './schemas/university.schema';
   ],
   controllers: [UniversityController],
   providers: [UniversityService],
+  exports: [UniversityService],
 })
 export class UniversityModule {}

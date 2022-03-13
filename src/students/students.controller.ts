@@ -3,7 +3,7 @@ import { Student } from 'src/student/interfaces/student.interface';
 import { StudentService } from 'src/student/student.service';
 
 @Controller('students')
-export class StudentController {
+export class StudentsController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get(':universityId')
