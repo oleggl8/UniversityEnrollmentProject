@@ -9,8 +9,8 @@ import { StudentService } from './student.service';
 
 @Module({
   imports: [
-    UniversityModule,
     MongooseModule.forFeature([{ name: 'Student', schema: StudentSchema }]),
+    UniversityModule,
   ],
   controllers: [StudentController, StudentsController, EnrollController],
   providers: [StudentService],

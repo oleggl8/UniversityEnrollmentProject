@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UniversityService } from 'src/university/university.service';
@@ -28,7 +28,7 @@ export class StudentService {
   }
 
   async getStudents(universityId: string): Promise<Array<Student>> {
-    return await Model.find({ universityId });
+    return await this.studentModel.find({ universityId });
   }
 
   async enroll(studentId: string, universityId: string): Promise<void> {
@@ -36,15 +36,25 @@ export class StudentService {
       universityId,
     );
     const studentToBeEnrolled = await this.findStudent(studentId);
+    console.log('student name is:' + studentToBeEnrolled.name);
     const studentGpa = await this.calcGpa(studentToBeEnrolled);
-    const students = await Model.find({ universityId });
+    console.log('student gpa is:' + studentGpa);
+    const students = await this.studentModel.find({ universityId });
+    console.log('students in ' + universityToEnroll.name + ' are:' + students);
+    console.log('before');
     if (studentGpa < universityToEnroll.minGpa) {
-      return;
+      console.log('before2');
+      throw new BadRequestException(
+        "Student's GPA does not meet the required GPA for that university",
+      );
+      console.log('after');
     }
     if (students.length >= universityToEnroll.maxNumberOfStudents) {
-      return;
+      throw new BadRequestException('University is full!');
     }
-    this.studentModel.findByIdAndUpdate(studentId, { universityId });
+    await this.studentModel.findByIdAndUpdate(studentId, {
+      universityId: universityId,
+    });
     return;
   }
 }

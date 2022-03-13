@@ -6,11 +6,11 @@ export class EnrollController {
   constructor(private readonly studentService: StudentService) {}
 
   @Post('/:studentId/:universityId')
-  enroll(
+  async enroll(
     @Param('studentId') studentId: string,
     @Param('universityId') universityId: string,
-  ): void {
-    this.studentService.enroll(studentId, universityId);
+  ): Promise<void> {
+    await this.studentService.enroll(studentId, universityId);
     return;
   }
 }

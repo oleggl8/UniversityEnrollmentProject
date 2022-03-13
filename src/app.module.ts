@@ -9,8 +9,7 @@ import { StudentModule } from './student/student.module';
   imports: [
     UniversityModule,
     StudentModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/students'),
-    MongooseModule.forRoot('mongodb://localhost:27017/universities'),
+    MongooseModule.forRoot('mongodb://localhost/UniversityEnrollment'),
   ],
   controllers: [AppController],
   providers: [AppService],

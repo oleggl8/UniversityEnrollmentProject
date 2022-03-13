@@ -1,7 +1,16 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Grade } from '../interfaces/grade.interface';
 
-export const StudentSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  grades: { type: Array, required: true },
-  universityId: { type: String, required: false, default: undefined },
-});
+@Schema()
+export class Student {
+  @Prop({ type: String, required: true })
+  name: string;
+
+  @Prop({ type: Array, required: true })
+  grades: Array<Grade>;
+
+  @Prop({ type: String, required: false, default: undefined })
+  universityId: string;
+}
+
+export const StudentSchema = SchemaFactory.createForClass(Student);
