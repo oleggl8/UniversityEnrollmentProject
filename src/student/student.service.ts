@@ -22,7 +22,10 @@ export class StudentService {
   }
 
   async calcGpa(student: Student): Promise<number> {
-    const sum = student.grades.reduce((sum, gradeJSON) => (sum + gradeJSON.grade), 0);
+    const sum = student.grades.reduce(
+      (sum, gradeJSON) => sum + gradeJSON.grade,
+      0,
+    );
     return sum / student.grades.length;
   }
 
@@ -31,12 +34,11 @@ export class StudentService {
   }
 
   async enroll(studentId: string, universityId: string): Promise<void> {
-    let universityToEnroll, studentToBeEnrolled;
-    [universityToEnroll, studentToBeEnrolled] = await Promise.all([
+    const [universityToEnroll, studentToBeEnrolled] = await Promise.all([
       this.universityService.findUniversity(universityId),
       this.findStudent(studentId),
-    ])
-    const studentGpa = await this.calcGpa(studentToBeEnrolled); 
+    ]);
+    const studentGpa = await this.calcGpa(studentToBeEnrolled);
     if (studentGpa < universityToEnroll.minGpa) {
       throw new BadRequestException(
         "Student's GPA does not meet the required GPA for that university",
